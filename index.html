@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#1D3A2A">
+<title>Cyber Shield</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div id="app">
+
+  <header class="bar">
+    <div>
+      <div class="mark">CYBER SHIELD</div>
+      <div class="unit" id="unitLabel">Not signed in</div>
+    </div>
+    <button class="langbtn" id="langBtn" type="button">اردو</button>
+  </header>
+
+  <!-- ============ SIGN IN ============ -->
+  <section class="screen on" id="s-signin">
+    <div class="auth-hero">
+      <div class="brand">
+        <span class="brand-mark">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 4v6c0 5-3.5 9-8 10-4.5-1-8-5-8-10V6l8-4z"/><path d="M9 12l2 2 4-4"/></svg>
+        </span>
+        <span>Cyber Shield</span>
+      </div>
+      <p data-en="Sign in to your Cyber Shield account on this phone."
+         data-ur="اس فون پر اپنے سائبر شیلڈ اکاؤنٹ میں سائن ان کریں۔">
+         Sign in to your Cyber Shield account on this phone.</p>
+    </div>
+    <label class="f"><span class="eyebrow" data-en="Username" data-ur="یوزر نیم">Username</span>
+      <input id="si-user" autocomplete="username" autocapitalize="off" spellcheck="false"></label>
+    <label class="f"><span class="eyebrow" data-en="Password" data-ur="پاس ورڈ">Password</span>
+      <input id="si-pass" type="password" autocomplete="current-password"></label>
+    <button id="btn-signin" data-en="Sign in" data-ur="سائن ان">Sign in</button>
+    <hr class="rule">
+    <div class="pair">
+      <button class="ghost" id="btn-goto-signup" data-en="Create account" data-ur="نیا اکاؤنٹ">Create account</button>
+      <button class="ghost" id="btn-goto-recover" data-en="Forgot password" data-ur="پاس ورڈ بھول گئے">Forgot password</button>
+    </div>
+  </section>
+
+  <!-- ============ SIGN UP ============ -->
+  <section class="screen" id="s-signup">
+    <div class="auth-hero">
+      <div class="brand">
+        <span class="brand-mark">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 4v6c0 5-3.5 9-8 10-4.5-1-8-5-8-10V6l8-4z"/><path d="M9 12l2 2 4-4"/></svg>
+        </span>
+        <span data-en="Create account" data-ur="نیا اکاؤنٹ">Create account</span>
+      </div>
+      <p class="muted" data-en="Your account lives on this phone only. No server, no phone number, no email."
+         data-ur="آپ کا اکاؤنٹ صرف اس فون میں ہے۔ نہ سرور، نہ فون نمبر، نہ ای میل۔">
+         Your account lives on this phone only. No server, no phone number, no email.</p>
+    </div>
+    <label class="f"><span class="eyebrow" data-en="Choose a username" data-ur="یوزر نیم منتخب کریں">Choose a username</span>
+      <input id="su-user" autocomplete="off" autocapitalize="off" spellcheck="false"></label>
+    <label class="f"><span class="eyebrow" data-en="Short callsign (optional)" data-ur="کال سائن (اختیاری)">Short callsign (optional)</span>
+      <input id="su-callsign" autocomplete="off"></label>
+    <label class="f"><span class="eyebrow" data-en="Password (8 or more characters)" data-ur="پاس ورڈ (کم از کم ۸ حروف)">Password (8 or more characters)</span>
+      <input id="su-pass" type="password" autocomplete="new-password"></label>
+    <label class="f"><span class="eyebrow" data-en="Repeat password" data-ur="پاس ورڈ دہرائیں">Repeat password</span>
+      <input id="su-pass2" type="password" autocomplete="new-password"></label>
+    <button id="btn-signup" data-en="Create account" data-ur="اکاؤنٹ بنائیں">Create account</button>
+    <button class="link" id="btn-back-signin-1" data-en="← Back to sign in" data-ur="← واپس سائن ان">← Back to sign in</button>
+  </section>
+
+  <!-- ============ RECOVERY CODE (shown once after signup) ============ -->
+  <section class="screen" id="s-recovery-show">
+    <h2 class="title" data-en="Save your recovery code" data-ur="اپنا ریکوری کوڈ محفوظ کریں">Save your recovery code</h2>
+    <p class="muted" data-en="This code is the only way to reset your password if you forget it. Write it down or screenshot it now. It will not be shown again."
+       data-ur="پاس ورڈ بھول جانے کی صورت میں اسے دوبارہ ترتیب دینے کا واحد طریقہ یہ کوڈ ہے۔ ابھی لکھ لیں یا اسکرین شاٹ لیں۔ یہ دوبارہ نہیں دکھایا جائے گا۔">
+       This code is the only way to reset your password if you forget it. Write it down or screenshot it now. It will not be shown again.</p>
+    <div class="recovery-box">
+      <span class="eyebrow" data-en="Recovery code" data-ur="ریکوری کوڈ">Recovery code</span>
+      <div class="code" id="rc-code">— — — —</div>
+    </div>
+    <div class="check">
+      <input type="checkbox" id="rc-ack">
+      <label for="rc-ack">
+        <div class="title" data-en="I have written down or screenshotted this code" data-ur="میں نے یہ کوڈ لکھ لیا ہے یا اسکرین شاٹ لے لیا ہے">I have written down or screenshotted this code</div>
+      </label>
+    </div>
+    <button id="btn-rc-continue" data-en="Continue" data-ur="جاری رکھیں">Continue</button>
+  </section>
+
+  <!-- ============ RECOVERY (enter code to reset password) ============ -->
+  <section class="screen" id="s-recover">
+    <h2 class="title" data-en="Reset password" data-ur="پاس ورڈ ری سیٹ">Reset password</h2>
+    <p class="muted" data-en="Enter the recovery code you saved when you created the account."
+       data-ur="وہ ریکوری کوڈ درج کریں جو آپ نے اکاؤنٹ بناتے وقت محفوظ کیا تھا۔">
+       Enter the recovery code you saved when you created the account.</p>
+    <label class="f"><span class="eyebrow" data-en="Username" data-ur="یوزر نیم">Username</span>
+      <input id="rec-user" autocomplete="username" autocapitalize="off" spellcheck="false"></label>
+    <label class="f"><span class="eyebrow" data-en="Recovery code" data-ur="ریکوری کوڈ">Recovery code</span>
+      <input id="rec-code" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="XXXX-XXXX-XXXX"></label>
+    <label class="f"><span class="eyebrow" data-en="New password" data-ur="نیا پاس ورڈ">New password</span>
+      <input id="rec-pass" type="password" autocomplete="new-password"></label>
+    <button id="btn-recover" data-en="Set new password" data-ur="نیا پاس ورڈ سیٹ کریں">Set new password</button>
+    <button class="link" id="btn-back-signin-2" data-en="← Back to sign in" data-ur="← واپس سائن ان">← Back to sign in</button>
+  </section>
+
+  <!-- ============ HOME ============ -->
+  <section class="screen" id="s-home">
+    <div class="plate">
+      <div class="head">
+        <div>
+          <div class="eyebrow" data-en="Cyber readiness" data-ur="سائبر تیاری">Cyber readiness</div>
+          <div class="num" id="h-score">0<span>/100</span></div>
+          <div class="band" id="h-band">—</div>
+        </div>
+      </div>
+      <div class="rows">
+        <div><div class="k" data-en="Lessons" data-ur="اسباق">Lessons</div><div class="v" id="h-mods">0/0</div></div>
+        <div><div class="k" data-en="Drill accuracy" data-ur="مشق کی درستگی">Drill accuracy</div><div class="v" id="h-drill">—</div></div>
+        <div><div class="k" data-en="Last phone check" data-ur="آخری فون چیک">Last phone check</div><div class="v" id="h-check">never</div></div>
+        <div><div class="k" data-en="Callsign" data-ur="کال سائن">Callsign</div><div class="v" id="h-call">—</div></div>
+      </div>
+    </div>
+
+    <button class="panic" id="btn-panic">
+      <span class="eyebrow" data-en="If it is happening right now" data-ur="اگر ابھی ہو رہا ہے">If it is happening right now</span>
+      <strong data-en="Something has gone wrong" data-ur="کچھ غلط ہو گیا ہے">Something has gone wrong</strong>
+    </button>
+
+    <div class="section-label" data-en="Next steps" data-ur="اگلے اقدامات">Next steps</div>
+
+    <div class="card tap" data-goto="s-learn">
+      <span class="eyebrow" data-en="Learn" data-ur="سیکھیں">Learn</span>
+      <h3 data-en="Continue your lessons" data-ur="اپنا سبق جاری رکھیں">Continue your lessons</h3>
+      <p data-en="Three to five minutes each. Available in Urdu."
+         data-ur="ہر سبق تین سے پانچ منٹ کا۔ اردو میں دستیاب۔">Three to five minutes each. Available in Urdu.</p>
+    </div>
+    <div class="card tap" data-goto="s-drill">
+      <span class="eyebrow" data-en="Practice" data-ur="مشق">Practice</span>
+      <h3 data-en="Spot the fake" data-ur="جعلی پیغام پہچانیں">Spot the fake</h3>
+      <p data-en="Real message patterns. Decide genuine or suspicious."
+         data-ur="اصل طرزِ پیغام۔ فیصلہ کریں: اصلی یا مشکوک۔">Real message patterns. Decide genuine or suspicious.</p>
+    </div>
+    <div class="card tap" data-goto="s-check">
+      <span class="eyebrow" data-en="Audit" data-ur="جائزہ">Audit</span>
+      <h3 data-en="Check my phone" data-ur="اپنا فون جانچیں">Check my phone</h3>
+      <p data-en="Fifteen checks for the common signs of compromise."
+         data-ur="عام علامات کے لیے پندرہ جانچیں۔">Fifteen checks for the common signs of compromise.</p>
+    </div>
+
+    <div class="card note">
+      <span class="eyebrow" data-en="Amnesty policy" data-ur="معافی پالیسی">Amnesty policy</span>
+      <p data-en="Reporting within 72 hours means support, not disciplinary action. The people who get hurt are the ones who stay silent."
+         data-ur="۷۲ گھنٹے کے اندر اطلاع دینے پر مدد ملے گی، سزا نہیں۔ نقصان خاموش رہنے والوں کا ہوتا ہے۔">
+         Reporting within 72 hours means support, not disciplinary action.</p>
+    </div>
+
+    <button class="ghost small" id="btn-settings" style="margin-top:12px" data-en="Settings" data-ur="سیٹنگز">Settings</button>
+  </section>
+
+  <!-- ============ LEARN ============ -->
+  <section class="screen" id="s-learn">
+    <h2 class="title" data-en="Lessons" data-ur="اسباق">Lessons</h2>
+    <p class="muted" data-en="Short, direct, and repeatable. Tap any card."
+       data-ur="مختصر، براہِ راست، دہرائے جا سکنے والے۔ کسی بھی کارڈ پر ٹیپ کریں۔">Short, direct, and repeatable. Tap any card.</p>
+    <div id="learn-list" style="margin-top:14px"></div>
+  </section>
+
+  <section class="screen" id="s-module">
+    <button class="link" data-goto="s-learn" style="padding-left:0" data-en="← Back to lessons" data-ur="← واپس اسباق">← Back to lessons</button>
+    <h2 class="title" id="m-title" style="margin-top:8px"></h2>
+    <div class="body-text" id="m-body"></div>
+    <hr class="rule">
+    <button id="btn-complete" data-en="Mark as done" data-ur="مکمل نشان زد کریں">Mark as done</button>
+  </section>
+
+  <!-- ============ DRILL ============ -->
+  <section class="screen" id="s-drill">
+    <h2 class="title" data-en="Spot the fake" data-ur="جعلی پیغام پہچانیں">Spot the fake</h2>
+    <div class="drill-progress">
+      <span id="drill-count">—</span>
+      <span class="bar"><span id="drill-bar" style="width:0%"></span></span>
+      <span id="drill-score">—</span>
+    </div>
+    <div id="drill-area"></div>
+  </section>
+
+  <!-- ============ CHECK ============ -->
+  <section class="screen" id="s-check">
+    <h2 class="title" data-en="Check my phone" data-ur="اپنا فون جانچیں">Check my phone</h2>
+    <p class="muted" data-en="Tick anything that is true on this phone. Each item tells you where to look."
+       data-ur="جو بات اس فون پر درست ہو اسے نشان زد کریں۔ ہر نکتہ بتاتا ہے کہاں دیکھنا ہے۔">
+       Tick anything that is true on this phone.</p>
+    <div id="check-list" style="margin-top:14px"></div>
+    <button id="btn-check-submit" style="margin-top:14px"
+      data-en="See result" data-ur="نتیجہ دیکھیں">See result</button>
+    <div id="check-result" style="margin-top:16px"></div>
+  </section>
+
+  <!-- ============ REPORT / EMERGENCY ============ -->
+  <section class="screen" id="s-report">
+    <button class="link" data-goto="s-home" style="padding-left:0" data-en="← Back" data-ur="← واپس">← Back</button>
+    <h2 class="title" style="margin-top:8px" data-en="If something has gone wrong" data-ur="اگر کچھ غلط ہو گیا ہے">If something has gone wrong</h2>
+
+    <div class="card urgent">
+      <span class="eyebrow" data-en="Do this first" data-ur="پہلے یہ کریں">Do this first</span>
+      <p data-en="Do not pay anyone. Do not delete the chat. Screenshot everything, including the profile page and the account name."
+         data-ur="کسی کو رقم نہ دیں۔ چیٹ حذف نہ کریں۔ ہر چیز کا اسکرین شاٹ لیں، بشمول پروفائل اور اکاؤنٹ کا نام۔">
+         Do not pay anyone. Do not delete the chat. Screenshot everything.</p>
+    </div>
+
+    <div class="card note">
+      <span class="eyebrow" data-en="Amnesty policy" data-ur="معافی پالیسی">Amnesty policy</span>
+      <p data-en="Reporting within 72 hours means support, not disciplinary action."
+         data-ur="۷۲ گھنٹے کے اندر اطلاع پر مدد ملے گی، سزا نہیں۔">
+         Reporting within 72 hours means support, not disciplinary action.</p>
+    </div>
+
+    <div class="section-label" data-en="Contact now" data-ur="ابھی رابطہ کریں">Contact now</div>
+
+    <div class="card">
+      <span class="eyebrow" data-en="Unit Cyber NCO" data-ur="یونٹ سائبر این سی او">Unit Cyber NCO</span>
+      <h3>ext 2214</h3>
+      <p data-en="Available during office hours. Call from any unit phone."
+         data-ur="دفتری اوقات میں دستیاب۔ کسی بھی یونٹ فون سے کال کریں۔">Available during office hours.</p>
+    </div>
+
+    <div class="card">
+      <span class="eyebrow" data-en="Family Cyber Champion" data-ur="فیملی سائبر چیمپیئن">Family Cyber Champion</span>
+      <h3 data-en="See your sub-unit list" data-ur="اپنی سب یونٹ کی فہرست دیکھیں">See your sub-unit list</h3>
+    </div>
+
+    <div class="card">
+      <span class="eyebrow" data-en="FIA Cyber Crime Wing" data-ur="ایف آئی اے سائبر کرائم ونگ">FIA Cyber Crime Wing</span>
+      <h3>1991</h3>
+      <p>complaint.fia.gov.pk</p>
+    </div>
+
+    <hr class="rule">
+    <div class="empty">
+      <span class="eyebrow" data-en="Coming soon" data-ur="جلد آ رہا ہے">Coming soon</span>
+      <h3 data-en="In-app reporting to your unit" data-ur="ایپ سے یونٹ کو اطلاع">In-app reporting to your unit</h3>
+      <p data-en="A later update will let you send a report from inside the app. For now, please use the contacts above."
+         data-ur="آنے والی اپڈیٹ میں آپ ایپ سے براہِ راست اطلاع بھیج سکیں گے۔ فی الحال براہِ کرم اوپر دیے گئے رابطوں کا استعمال کریں۔">
+         A later update will let you send a report from inside the app. For now, please use the contacts above.</p>
+    </div>
+  </section>
+
+  <!-- ============ SETTINGS ============ -->
+  <section class="screen" id="s-settings">
+    <button class="link" data-goto="s-home" style="padding-left:0" data-en="← Back" data-ur="← واپس">← Back</button>
+    <h2 class="title" style="margin-top:8px" data-en="Settings" data-ur="سیٹنگز">Settings</h2>
+
+    <label class="f"><span class="eyebrow" data-en="Callsign shown in the app" data-ur="ایپ میں دکھایا جانے والا کال سائن">Callsign shown in the app</span>
+      <input id="set-callsign" autocomplete="off"></label>
+    <button id="btn-save-callsign" class="ghost small" data-en="Save callsign" data-ur="کال سائن محفوظ کریں">Save callsign</button>
+
+    <hr class="rule">
+    <button class="ghost" id="btn-logout" data-en="Sign out" data-ur="سائن آؤٹ">Sign out</button>
+    <hr class="rule">
+    <p class="tiny" data-en="Wiping the app deletes your account, progress, and recovery code on this phone. It cannot be undone."
+       data-ur="ایپ ری سیٹ کرنے سے اس فون سے آپ کا اکاؤنٹ، پیش رفت اور ریکوری کوڈ حذف ہو جائیں گے۔ اسے واپس نہیں لایا جا سکتا۔">
+       Wiping the app deletes your account, progress, and recovery code on this phone. It cannot be undone.</p>
+    <button class="danger" id="btn-wipe" data-en="Wipe app data" data-ur="ایپ ڈیٹا مٹا دیں">Wipe app data</button>
+  </section>
+
+  <nav class="tabs" id="tabs" style="display:none">
+    <button data-tab="s-home" class="on">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg>
+      <span data-en="Home" data-ur="ہوم">Home</span>
+    </button>
+    <button data-tab="s-learn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 5h7v15H4z"/><path d="M13 5h7v15h-7z"/></svg>
+      <span data-en="Learn" data-ur="سیکھیں">Learn</span>
+    </button>
+    <button data-tab="s-drill">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/></svg>
+      <span data-en="Drill" data-ur="مشق">Drill</span>
+    </button>
+    <button data-tab="s-check">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="6" y="2" width="12" height="20" rx="2"/><path d="M9 12l2 2 4-4"/></svg>
+      <span data-en="Check" data-ur="چیک">Check</span>
+    </button>
+  </nav>
+
+</div>
+<script src="content.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
