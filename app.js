@@ -9,10 +9,12 @@ const K = {
   session: "cs_session_v1",   // {username, at}
   progress: "cs_progress_v1", // {done: {code:true}, drill: [{id, correct}], checks: [{score, band, findings, at}]}
   lang: "cs_lang",
+  brand: "cs_brand",
 };
 
 const S = {
   lang: localStorage.getItem(K.lang) || "en",
+  brand: localStorage.getItem(K.brand) || "samsung",
   account: JSON.parse(localStorage.getItem(K.account) || "null"),
   session: JSON.parse(localStorage.getItem(K.session) || "null"),
   drillOrder: [],
@@ -365,7 +367,44 @@ function answerDrill(card, saidGenuine) {
 }
 
 /* ---------------- CHECK ---------------- */
+function howFor(c, ur) {
+  const brandPath = c.paths && c.paths[S.brand];
+  if (brandPath) return ur ? brandPath.ur : brandPath.en;
+  return ur ? c.how_ur : c.how_en;
+}
+
+function populateBrands() {
+  const sel = $("brand-select");
+  if (!sel || sel.dataset.filled) { syncBrandLabels(); return; }
+  const ur = S.lang === "ur";
+  BRANDS.forEach((b) => {
+    const opt = document.createElement("option");
+    opt.value = b.id;
+    opt.dataset.en = b.label_en;
+    opt.dataset.ur = b.label_ur;
+    opt.textContent = ur ? b.label_ur : b.label_en;
+    sel.appendChild(opt);
+  });
+  sel.value = S.brand;
+  sel.dataset.filled = "1";
+  sel.onchange = () => {
+    S.brand = sel.value;
+    localStorage.setItem(K.brand, S.brand);
+    loadChecklist();
+  };
+}
+
+function syncBrandLabels() {
+  const sel = $("brand-select");
+  if (!sel) return;
+  const ur = S.lang === "ur";
+  Array.from(sel.options).forEach((o) => {
+    if (o.dataset.en) o.textContent = ur ? o.dataset.ur : o.dataset.en;
+  });
+}
+
 function loadChecklist() {
+  populateBrands();
   const list = $("check-list"); list.innerHTML = ""; $("check-result").innerHTML = "";
   const ur = S.lang === "ur";
   CHECKS.forEach((c) => {
@@ -376,7 +415,7 @@ function loadChecklist() {
     const t = el("div", "title" + (ur ? " ur" : ""), ur ? c.title_ur : c.title_en);
     const sev = el("span", "sev " + c.severity, c.severity);
     t.appendChild(sev);
-    const how = el("div", "how" + (ur ? " ur" : ""), ur ? c.how_ur : c.how_en);
+    const how = el("div", "how" + (ur ? " ur" : ""), howFor(c, ur));
     lab.append(t, how);
     row.append(box, lab);
     list.appendChild(row);
@@ -391,7 +430,7 @@ $("btn-check-submit").onclick = () => {
     const box = $("chk_" + c.id);
     if (box && box.checked) {
       score -= c.weight;
-      findings.push({ id: c.id, title: ur ? c.title_ur : c.title_en, severity: c.severity, advice: ur ? c.how_ur : c.how_en });
+      findings.push({ id: c.id, title: ur ? c.title_ur : c.title_en, severity: c.severity, advice: howFor(c, ur) });
     }
   });
   score = Math.max(0, score);

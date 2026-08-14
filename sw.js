@@ -1,5 +1,5 @@
 /* Offline shell. Everything the app needs is cached on first load. No network required after that. */
-const CACHE = "cyber-shield-v2-offline";
+const CACHE = "cyber-shield-v3-military";
 const SHELL = [
   "./",
   "./index.html",
