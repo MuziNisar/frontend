@@ -6,12 +6,13 @@
 <meta name="theme-color" content="#1D3A2A">
 <title>Cyber Shield</title>
 <link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icon-512.png">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 <div id="app">
 
-  <header class="bar">
+  <header class="bar" id="topbar">
     <div>
       <div class="mark">CYBER SHIELD</div>
       <div class="unit" id="unitLabel">Not signed in</div>
@@ -19,13 +20,51 @@
     <button class="langbtn" id="langBtn" type="button">اردو</button>
   </header>
 
+  <!-- ============ ONBOARDING (first launch) ============ -->
+  <section class="onboard" id="s-onboarding" style="display:none">
+    <div class="slide on" data-slide="0">
+      <div class="art">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 4v6c0 5-3.5 9-8 10-4.5-1-8-5-8-10V6l8-4z"/><path d="M9 12l2 2 4-4"/></svg>
+      </div>
+      <h1 data-en="Welcome to Cyber Shield" data-ur="سائبر شیلڈ میں خوش آمدید">Welcome to Cyber Shield</h1>
+      <p data-en="A short cyber hygiene training for service members and their families. English and Urdu, always offline, nothing sent to anyone."
+         data-ur="فوجی اہلکاروں اور ان کے گھر والوں کے لیے مختصر سائبر تربیت۔ انگریزی اور اردو، ہمیشہ آف لائن، کچھ بھی کہیں نہیں بھیجا جاتا۔">
+         A short cyber hygiene training for service members and their families.</p>
+    </div>
+    <div class="slide" data-slide="1">
+      <div class="art">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h7v15H4z"/><path d="M13 5h7v15h-7z"/><path d="M7 9h1M7 12h1M7 15h1M16 9h1M16 12h1M16 15h1"/></svg>
+      </div>
+      <h1 data-en="Learn, drill, check" data-ur="سیکھیں، مشق کریں، جانچیں">Learn, drill, check</h1>
+      <p data-en="Twelve short lessons on real HIA threats. Eighteen practice cards to sharpen judgement. Twenty-two device checks tailored to your phone brand."
+         data-ur="اصل دشمن انٹیلی جنس خطرات پر بارہ مختصر اسباق۔ اٹھارہ مشق کارڈ۔ آپ کے فون برانڈ کے مطابق بائیس ڈیوائس چیک۔">
+         Twelve short lessons. Eighteen practice cards. Twenty-two device checks.</p>
+    </div>
+    <div class="slide" data-slide="2">
+      <div class="art">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="7" width="16" height="12" rx="2"/><path d="M8 7V5a4 4 0 0 1 8 0v2"/></svg>
+      </div>
+      <h1 data-en="On this phone only" data-ur="صرف اس فون پر">On this phone only</h1>
+      <p data-en="Your account, progress, and any notes stay on this phone. No server, no login, no phone number, no email. You will get a one-time recovery code — save it."
+         data-ur="آپ کا اکاؤنٹ، پیش رفت، اور نوٹس صرف اس فون پر رہتے ہیں۔ نہ سرور، نہ فون نمبر، نہ ای میل۔ آپ کو ایک ریکوری کوڈ ملے گا — اسے محفوظ کریں۔">
+         Your account and progress stay on this phone. You will get a one-time recovery code.</p>
+    </div>
+    <div class="dots">
+      <span class="dot on" data-dot="0"></span>
+      <span class="dot" data-dot="1"></span>
+      <span class="dot" data-dot="2"></span>
+    </div>
+    <div class="foot">
+      <button class="ghost skip" id="btn-onb-skip" data-en="Skip" data-ur="چھوڑیں">Skip</button>
+      <button class="next" id="btn-onb-next" data-en="Next" data-ur="اگلا">Next</button>
+    </div>
+  </section>
+
   <!-- ============ SIGN IN ============ -->
-  <section class="screen on" id="s-signin">
+  <section class="screen" id="s-signin">
     <div class="auth-hero">
       <div class="brand">
-        <span class="brand-mark">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 4v6c0 5-3.5 9-8 10-4.5-1-8-5-8-10V6l8-4z"/><path d="M9 12l2 2 4-4"/></svg>
-        </span>
+        <img class="brand-mark" src="icon-192.png" alt="" width="44" height="44" style="border-radius:12px;object-fit:cover;">
         <span>Cyber Shield</span>
       </div>
       <p data-en="Sign in to your Cyber Shield account on this phone."
@@ -48,14 +87,12 @@
   <section class="screen" id="s-signup">
     <div class="auth-hero">
       <div class="brand">
-        <span class="brand-mark">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 4v6c0 5-3.5 9-8 10-4.5-1-8-5-8-10V6l8-4z"/><path d="M9 12l2 2 4-4"/></svg>
-        </span>
+        <img class="brand-mark" src="icon-192.png" alt="" width="44" height="44" style="border-radius:12px;object-fit:cover;">
         <span data-en="Create account" data-ur="نیا اکاؤنٹ">Create account</span>
       </div>
       <p class="muted" data-en="Your account lives on this phone only. No server, no phone number, no email."
          data-ur="آپ کا اکاؤنٹ صرف اس فون میں ہے۔ نہ سرور، نہ فون نمبر، نہ ای میل۔">
-         Your account lives on this phone only. No server, no phone number, no email.</p>
+         Your account lives on this phone only.</p>
     </div>
     <label class="f"><span class="eyebrow" data-en="Choose a username" data-ur="یوزر نیم منتخب کریں">Choose a username</span>
       <input id="su-user" autocomplete="off" autocapitalize="off" spellcheck="false"></label>
@@ -74,7 +111,7 @@
     <h2 class="title" data-en="Save your recovery code" data-ur="اپنا ریکوری کوڈ محفوظ کریں">Save your recovery code</h2>
     <p class="muted" data-en="This code is the only way to reset your password if you forget it. Write it down or screenshot it now. It will not be shown again."
        data-ur="پاس ورڈ بھول جانے کی صورت میں اسے دوبارہ ترتیب دینے کا واحد طریقہ یہ کوڈ ہے۔ ابھی لکھ لیں یا اسکرین شاٹ لیں۔ یہ دوبارہ نہیں دکھایا جائے گا۔">
-       This code is the only way to reset your password if you forget it. Write it down or screenshot it now. It will not be shown again.</p>
+       This code is the only way to reset your password if you forget it.</p>
     <div class="recovery-box">
       <span class="eyebrow" data-en="Recovery code" data-ur="ریکوری کوڈ">Recovery code</span>
       <div class="code" id="rc-code">— — — —</div>
@@ -88,7 +125,7 @@
     <button id="btn-rc-continue" data-en="Continue" data-ur="جاری رکھیں">Continue</button>
   </section>
 
-  <!-- ============ RECOVERY (enter code to reset password) ============ -->
+  <!-- ============ RECOVERY ============ -->
   <section class="screen" id="s-recover">
     <h2 class="title" data-en="Reset password" data-ur="پاس ورڈ ری سیٹ">Reset password</h2>
     <p class="muted" data-en="Enter the recovery code you saved when you created the account."
@@ -122,37 +159,45 @@
       </div>
     </div>
 
+    <div class="home-row">
+      <div class="tile streak">
+        <div class="k" data-en="Streak" data-ur="سلسلہ">Streak</div>
+        <div class="v" id="h-streak">0<small data-en="days" data-ur="دن">days</small></div>
+      </div>
+      <div class="tile">
+        <div class="k" data-en="Next up" data-ur="اگلا سبق">Next up</div>
+        <div class="v" id="h-next" style="font-size:14px;line-height:1.3;font-weight:700">—</div>
+      </div>
+    </div>
+
+    <div class="focus-card" id="focus-card" data-goto="s-learn">
+      <span class="eyebrow" data-en="This week's focus" data-ur="اس ہفتے کی توجہ">This week's focus</span>
+      <h3 id="focus-title">—</h3>
+      <p id="focus-body">—</p>
+    </div>
+
     <button class="panic" id="btn-panic">
       <span class="eyebrow" data-en="If it is happening right now" data-ur="اگر ابھی ہو رہا ہے">If it is happening right now</span>
       <strong data-en="Something has gone wrong" data-ur="کچھ غلط ہو گیا ہے">Something has gone wrong</strong>
     </button>
 
-    <div class="section-label" data-en="Next steps" data-ur="اگلے اقدامات">Next steps</div>
-
-    <div class="card tap" data-goto="s-learn">
-      <span class="eyebrow" data-en="Learn" data-ur="سیکھیں">Learn</span>
-      <h3 data-en="Continue your lessons" data-ur="اپنا سبق جاری رکھیں">Continue your lessons</h3>
-      <p data-en="Three to five minutes each. Available in Urdu."
-         data-ur="ہر سبق تین سے پانچ منٹ کا۔ اردو میں دستیاب۔">Three to five minutes each. Available in Urdu.</p>
-    </div>
-    <div class="card tap" data-goto="s-drill">
-      <span class="eyebrow" data-en="Practice" data-ur="مشق">Practice</span>
-      <h3 data-en="Spot the fake" data-ur="جعلی پیغام پہچانیں">Spot the fake</h3>
-      <p data-en="Real message patterns. Decide genuine or suspicious."
-         data-ur="اصل طرزِ پیغام۔ فیصلہ کریں: اصلی یا مشکوک۔">Real message patterns. Decide genuine or suspicious.</p>
-    </div>
-    <div class="card tap" data-goto="s-check">
-      <span class="eyebrow" data-en="Audit" data-ur="جائزہ">Audit</span>
-      <h3 data-en="Check my phone" data-ur="اپنا فون جانچیں">Check my phone</h3>
-      <p data-en="Fifteen checks for the common signs of compromise."
-         data-ur="عام علامات کے لیے پندرہ جانچیں۔">Fifteen checks for the common signs of compromise.</p>
+    <div class="section-label" data-en="Recent activity" data-ur="حالیہ سرگرمی">Recent activity</div>
+    <div class="card" id="activity-card">
+      <div id="activity-list"></div>
     </div>
 
-    <div class="card note">
-      <span class="eyebrow" data-en="Amnesty policy" data-ur="معافی پالیسی">Amnesty policy</span>
-      <p data-en="Reporting within 72 hours means support, not disciplinary action. The people who get hurt are the ones who stay silent."
-         data-ur="۷۲ گھنٹے کے اندر اطلاع دینے پر مدد ملے گی، سزا نہیں۔ نقصان خاموش رہنے والوں کا ہوتا ہے۔">
-         Reporting within 72 hours means support, not disciplinary action.</p>
+    <div class="section-label" data-en="Resources" data-ur="وسائل">Resources</div>
+    <div class="card tap" data-goto="s-amnesty">
+      <span class="eyebrow" data-en="Policy" data-ur="پالیسی">Policy</span>
+      <h3 data-en="Amnesty policy" data-ur="معافی پالیسی">Amnesty policy</h3>
+      <p data-en="Reporting within 72 hours means support, not disciplinary action."
+         data-ur="۷۲ گھنٹے کے اندر اطلاع پر مدد ملے گی، سزا نہیں۔">Reporting within 72 hours means support, not disciplinary action.</p>
+    </div>
+    <div class="card tap" data-goto="s-glossary">
+      <span class="eyebrow" data-en="Reference" data-ur="حوالہ">Reference</span>
+      <h3 data-en="Glossary of terms" data-ur="اصطلاحات کی فہرست">Glossary of terms</h3>
+      <p data-en="HIA, OPSEC, elicitation, OTP, and other terms used in this app."
+         data-ur="ایچ آئی اے، اوپ سیک، ایلیسیٹیشن، او ٹی پی، اور دیگر اصطلاحات۔">HIA, OPSEC, elicitation, OTP, and other terms.</p>
     </div>
 
     <button class="ghost small" id="btn-settings" style="margin-top:12px" data-en="Settings" data-ur="سیٹنگز">Settings</button>
@@ -161,9 +206,10 @@
   <!-- ============ LEARN ============ -->
   <section class="screen" id="s-learn">
     <h2 class="title" data-en="Lessons" data-ur="اسباق">Lessons</h2>
-    <p class="muted" data-en="Short, direct, and repeatable. Tap any card."
-       data-ur="مختصر، براہِ راست، دہرائے جا سکنے والے۔ کسی بھی کارڈ پر ٹیپ کریں۔">Short, direct, and repeatable. Tap any card.</p>
-    <div id="learn-list" style="margin-top:14px"></div>
+    <p class="muted" data-en="Short lessons on real HIA threats to service members and their families. Each ends with two quick questions."
+       data-ur="فوجی اہلکاروں اور ان کے گھر والوں کے لیے دشمن انٹیلی جنس کے حقیقی خطرات پر مختصر اسباق۔ ہر سبق کے آخر میں دو مختصر سوالات۔">Short lessons on real threats. Each ends with two quick questions.</p>
+    <div class="chip-row" id="learn-chips"></div>
+    <div id="learn-list"></div>
   </section>
 
   <section class="screen" id="s-module">
@@ -171,13 +217,27 @@
     <h2 class="title" id="m-title" style="margin-top:8px"></h2>
     <div class="body-text" id="m-body"></div>
     <hr class="rule">
-    <button id="btn-complete" data-en="Mark as done" data-ur="مکمل نشان زد کریں">Mark as done</button>
+    <button id="btn-take-quiz" data-en="Take the quick check" data-ur="مختصر جانچ لیں">Take the quick check</button>
+  </section>
+
+  <!-- ============ QUIZ ============ -->
+  <section class="screen" id="s-quiz">
+    <button class="link" id="btn-quiz-back" style="padding-left:0" data-en="← Back to lesson" data-ur="← واپس سبق">← Back to lesson</button>
+    <h2 class="title" style="margin-top:8px" data-en="Quick check" data-ur="مختصر جانچ">Quick check</h2>
+    <div class="quiz-progress">
+      <span id="quiz-count">—</span>
+      <span class="bar"><span id="quiz-bar" style="width:0%"></span></span>
+      <span id="quiz-score">0</span>
+    </div>
+    <div id="quiz-area"></div>
   </section>
 
   <!-- ============ DRILL ============ -->
   <section class="screen" id="s-drill">
     <h2 class="title" data-en="Spot the fake" data-ur="جعلی پیغام پہچانیں">Spot the fake</h2>
-    <div class="drill-progress">
+    <p class="muted" data-en="A round is 5 cards. Decide 'Genuine' or 'Suspicious', then read why."
+       data-ur="ایک راؤنڈ پانچ کارڈ کا ہے۔ 'اصلی' یا 'مشکوک' منتخب کریں، پھر وجہ پڑھیں۔">A round is 5 cards. Decide 'Genuine' or 'Suspicious', then read why.</p>
+    <div class="quiz-progress" id="drill-header">
       <span id="drill-count">—</span>
       <span class="bar"><span id="drill-bar" style="width:0%"></span></span>
       <span id="drill-score">—</span>
@@ -188,10 +248,11 @@
   <!-- ============ CHECK ============ -->
   <section class="screen" id="s-check">
     <h2 class="title" data-en="Check my phone" data-ur="اپنا فون جانچیں">Check my phone</h2>
-    <p class="muted" data-en="Tick anything that is true on this phone. Each item tells you where to look — for your phone brand."
+    <p class="muted" data-en="Tick anything that is true on this phone. Each item shows the settings path for your phone brand."
        data-ur="جو بات اس فون پر درست ہو اسے نشان زد کریں۔ ہر نکتہ آپ کے فون برانڈ کے مطابق راستہ بتاتا ہے۔">
        Tick anything that is true on this phone.</p>
-    <label class="f" style="margin-top:14px"><span class="eyebrow" data-en="Your phone brand" data-ur="آپ کا فون برانڈ">Your phone brand</span>
+    <div id="check-history"></div>
+    <label class="f" style="margin-top:8px"><span class="eyebrow" data-en="Your phone brand" data-ur="آپ کا فون برانڈ">Your phone brand</span>
       <select id="brand-select"></select></label>
     <div id="check-list" style="margin-top:8px"></div>
     <button id="btn-check-submit" style="margin-top:14px"
@@ -216,36 +277,68 @@
       <p data-en="Reporting within 72 hours means support, not disciplinary action."
          data-ur="۷۲ گھنٹے کے اندر اطلاع پر مدد ملے گی، سزا نہیں۔">
          Reporting within 72 hours means support, not disciplinary action.</p>
+      <button class="link" data-goto="s-amnesty" style="padding-left:0" data-en="Read the policy →" data-ur="پالیسی پڑھیں ←">Read the policy →</button>
     </div>
 
     <div class="section-label" data-en="Contact now" data-ur="ابھی رابطہ کریں">Contact now</div>
+    <div id="report-contacts"></div>
+    <p class="tiny" data-en="Contacts can be updated in Settings."
+       data-ur="رابطے سیٹنگز میں تبدیل کیے جا سکتے ہیں۔">Contacts can be updated in Settings.</p>
+  </section>
 
+  <!-- ============ AMNESTY ============ -->
+  <section class="screen" id="s-amnesty">
+    <button class="link" data-goto="s-home" style="padding-left:0" data-en="← Back" data-ur="← واپس">← Back</button>
+    <h2 class="title" style="margin-top:8px" data-en="Amnesty policy" data-ur="معافی پالیسی">Amnesty policy</h2>
+    <div class="amnesty-hero">
+      <span class="eyebrow" data-en="72-hour rule" data-ur="۷۲ گھنٹے کا اصول">72-hour rule</span>
+      <h3 data-en="Reporting within 72 hours means support, not disciplinary action." data-ur="۷۲ گھنٹے کے اندر اطلاع دینے پر مدد ملے گی، سزا نہیں۔">Reporting within 72 hours means support, not disciplinary action.</h3>
+      <p data-en="The service loses officers and soldiers to blackmail because they stayed silent, not because they were targeted. Being targeted is not a failure. Staying silent is what the other side is counting on."
+         data-ur="فوج بلیک میل سے افسر اور جوان اس لیے کھوتی ہے کہ وہ خاموش رہے، نہ کہ اس لیے کہ نشانہ بنے۔ نشانہ بننا ناکامی نہیں۔ خاموشی وہی ہے جس پر دوسری طرف بھروسا کرتی ہے۔">
+         The service loses people to blackmail because they stayed silent, not because they were targeted.</p>
+    </div>
+
+    <div class="section-label" data-en="The three rules" data-ur="تین اصول">The three rules</div>
     <div class="card">
-      <span class="eyebrow" data-en="Unit Cyber NCO" data-ur="یونٹ سائبر این سی او">Unit Cyber NCO</span>
-      <h3>ext 2214</h3>
-      <p data-en="Available during office hours. Call from any unit phone."
-         data-ur="دفتری اوقات میں دستیاب۔ کسی بھی یونٹ فون سے کال کریں۔">Available during office hours.</p>
+      <div class="amnesty-rule">
+        <div class="n">1</div>
+        <div>
+          <h4 data-en="Do not pay" data-ur="رقم نہ دیں">Do not pay</h4>
+          <p data-en="Payment proves you will pay and the demands escalate. Not one case in a hundred ends with a single payment."
+             data-ur="ادائیگی ثابت کرتی ہے کہ آپ دیں گے، اور مطالبات بڑھتے جاتے ہیں۔ سو میں سے ایک کیس بھی ایک ادائیگی پر ختم نہیں ہوتا۔">
+             Payment escalates. It never ends at one.</p>
+        </div>
+      </div>
+      <div class="amnesty-rule">
+        <div class="n two">2</div>
+        <div>
+          <h4 data-en="Do not delete" data-ur="کچھ حذف نہ کریں">Do not delete</h4>
+          <p data-en="The chat, the profile, the account name, the numbers — all of it is evidence. Screenshot everything, including the profile page."
+             data-ur="چیٹ، پروفائل، اکاؤنٹ کا نام، نمبر — سب ثبوت ہیں۔ اسکرین شاٹ لیں، پروفائل پیج سمیت۔">
+             Everything is evidence. Screenshot the profile too.</p>
+        </div>
+      </div>
+      <div class="amnesty-rule">
+        <div class="n three">3</div>
+        <div>
+          <h4 data-en="Report the same day" data-ur="اسی دن اطلاع دیں">Report the same day</h4>
+          <p data-en="To the unit cyber contact, and to the FIA Cyber Crime Wing (1991). Not tomorrow. Today."
+             data-ur="یونٹ کے سائبر رابطہ کار اور ایف آئی اے سائبر کرائم ونگ (۱۹۹۱) کو۔ کل نہیں۔ آج۔">
+             To the unit contact and FIA (1991). Today, not tomorrow.</p>
+        </div>
+      </div>
     </div>
 
-    <div class="card">
-      <span class="eyebrow" data-en="Family Cyber Champion" data-ur="فیملی سائبر چیمپیئن">Family Cyber Champion</span>
-      <h3 data-en="See your sub-unit list" data-ur="اپنی سب یونٹ کی فہرست دیکھیں">See your sub-unit list</h3>
-    </div>
+    <button class="ghost" data-goto="s-report" data-en="See contacts" data-ur="رابطے دیکھیں">See contacts</button>
+  </section>
 
-    <div class="card">
-      <span class="eyebrow" data-en="FIA Cyber Crime Wing" data-ur="ایف آئی اے سائبر کرائم ونگ">FIA Cyber Crime Wing</span>
-      <h3>1991</h3>
-      <p>complaint.fia.gov.pk</p>
-    </div>
-
-    <hr class="rule">
-    <div class="empty">
-      <span class="eyebrow" data-en="Coming soon" data-ur="جلد آ رہا ہے">Coming soon</span>
-      <h3 data-en="In-app reporting to your unit" data-ur="ایپ سے یونٹ کو اطلاع">In-app reporting to your unit</h3>
-      <p data-en="A later update will let you send a report from inside the app. For now, please use the contacts above."
-         data-ur="آنے والی اپڈیٹ میں آپ ایپ سے براہِ راست اطلاع بھیج سکیں گے۔ فی الحال براہِ کرم اوپر دیے گئے رابطوں کا استعمال کریں۔">
-         A later update will let you send a report from inside the app. For now, please use the contacts above.</p>
-    </div>
+  <!-- ============ GLOSSARY ============ -->
+  <section class="screen" id="s-glossary">
+    <button class="link" data-goto="s-home" style="padding-left:0" data-en="← Back" data-ur="← واپس">← Back</button>
+    <h2 class="title" style="margin-top:8px" data-en="Glossary" data-ur="اصطلاحات">Glossary</h2>
+    <p class="muted" data-en="Terms used in this app, in plain language."
+       data-ur="اس ایپ میں استعمال ہونے والی اصطلاحات، سادہ زبان میں۔">Terms used in this app, in plain language.</p>
+    <div id="glossary-list" style="margin-top:14px"></div>
   </section>
 
   <!-- ============ SETTINGS ============ -->
@@ -253,17 +346,44 @@
     <button class="link" data-goto="s-home" style="padding-left:0" data-en="← Back" data-ur="← واپس">← Back</button>
     <h2 class="title" style="margin-top:8px" data-en="Settings" data-ur="سیٹنگز">Settings</h2>
 
+    <div class="section-label" data-en="Profile" data-ur="پروفائل">Profile</div>
     <label class="f"><span class="eyebrow" data-en="Callsign shown in the app" data-ur="ایپ میں دکھایا جانے والا کال سائن">Callsign shown in the app</span>
       <input id="set-callsign" autocomplete="off"></label>
     <button id="btn-save-callsign" class="ghost small" data-en="Save callsign" data-ur="کال سائن محفوظ کریں">Save callsign</button>
+
+    <div class="section-label" style="margin-top:20px" data-en="Text size" data-ur="متن کا سائز">Text size</div>
+    <div class="size-pair">
+      <button class="ghost" data-size="normal" data-en="Normal" data-ur="عام">Normal</button>
+      <button class="ghost" data-size="large"  data-en="Large" data-ur="بڑا">Large</button>
+      <button class="ghost" data-size="xlarge" data-en="Extra large" data-ur="بہت بڑا">Extra large</button>
+    </div>
+
+    <div class="section-label" style="margin-top:20px" data-en="Emergency contacts" data-ur="ہنگامی رابطے">Emergency contacts</div>
+    <p class="tiny" data-en="These appear on the report screen. Fill in your unit's own numbers."
+       data-ur="یہ رپورٹ سکرین پر نظر آتے ہیں۔ اپنی یونٹ کے نمبر لکھیں۔">These appear on the report screen. Fill in your unit's own numbers.</p>
+    <label class="f"><span class="eyebrow" data-en="Unit Cyber NCO — label" data-ur="یونٹ سائبر این سی او — نام">Unit Cyber NCO — label</span>
+      <input id="ct-nco-label" autocomplete="off"></label>
+    <label class="f"><span class="eyebrow" data-en="Unit Cyber NCO — number" data-ur="یونٹ سائبر این سی او — نمبر">Unit Cyber NCO — number</span>
+      <input id="ct-nco-num" autocomplete="off" inputmode="tel"></label>
+    <label class="f"><span class="eyebrow" data-en="Family Cyber Champion — label" data-ur="فیملی سائبر چیمپیئن — نام">Family Cyber Champion — label</span>
+      <input id="ct-fam-label" autocomplete="off"></label>
+    <label class="f"><span class="eyebrow" data-en="Family Cyber Champion — number" data-ur="فیملی سائبر چیمپیئن — نمبر">Family Cyber Champion — number</span>
+      <input id="ct-fam-num" autocomplete="off" inputmode="tel"></label>
+    <label class="f"><span class="eyebrow" data-en="Unit hotline — label" data-ur="یونٹ ہاٹ لائن — نام">Unit hotline — label</span>
+      <input id="ct-hot-label" autocomplete="off"></label>
+    <label class="f"><span class="eyebrow" data-en="Unit hotline — number" data-ur="یونٹ ہاٹ لائن — نمبر">Unit hotline — number</span>
+      <input id="ct-hot-num" autocomplete="off" inputmode="tel"></label>
+    <button id="btn-save-contacts" class="ghost small" data-en="Save contacts" data-ur="رابطے محفوظ کریں">Save contacts</button>
 
     <hr class="rule">
     <button class="ghost" id="btn-logout" data-en="Sign out" data-ur="سائن آؤٹ">Sign out</button>
     <hr class="rule">
     <p class="tiny" data-en="Wiping the app deletes your account, progress, and recovery code on this phone. It cannot be undone."
        data-ur="ایپ ری سیٹ کرنے سے اس فون سے آپ کا اکاؤنٹ، پیش رفت اور ریکوری کوڈ حذف ہو جائیں گے۔ اسے واپس نہیں لایا جا سکتا۔">
-       Wiping the app deletes your account, progress, and recovery code on this phone. It cannot be undone.</p>
+       Wiping the app deletes your account, progress, and recovery code on this phone.</p>
     <button class="danger" id="btn-wipe" data-en="Wipe app data" data-ur="ایپ ڈیٹا مٹا دیں">Wipe app data</button>
+
+    <p class="tiny" style="text-align:center;margin-top:20px" id="version-line">Cyber Shield · v1.1 · offline</p>
   </section>
 
   <nav class="tabs" id="tabs" style="display:none">
